@@ -25,6 +25,11 @@ function App() {
         <h2>Insira a sua próxima tarefa:</h2>
 
         <form onSubmit={handleSubmit}>
+          <div className="form_control">
+            <label htmlFor="title">O que você vai fazer?</label>
+            <input type="text" name='title' placeholder='Título da tarefa' value={title} required onChange={(e) => setTitle(e.target.value)} />
+          </div>
+
           <input type="submit" value="Enviar" />
         </form>
       </div>
