@@ -13,7 +13,18 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    const todo = {
+      id: Math.random(),
+      title,
+      time,
+      done: false,
+    }
+
+    console.log(todo);
+
     setTitle('')
+    setTime('')
   }
 
   return (
@@ -33,7 +44,7 @@ function App() {
 
           <div className="form_control">
             <label htmlFor="time">Duração:</label>
-            <input type="text" name='time' placeholder='Tempo estimado (em horas)' value={time || ''} required onChange={(e) => setTitle(e.target.value)} />
+            <input type="text" name='time' placeholder='Tempo estimado (em horas)' value={time || ''} required onChange={(e) => setTime(e.target.value)} />
           </div>
 
           <input type="submit" value="Criar Tarefa" />
