@@ -13,6 +13,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setTitle('')
   }
 
   return (
@@ -27,10 +28,15 @@ function App() {
         <form onSubmit={handleSubmit}>
           <div className="form_control">
             <label htmlFor="title">O que você vai fazer?</label>
-            <input type="text" name='title' placeholder='Título da tarefa' value={title} required onChange={(e) => setTitle(e.target.value)} />
+            <input type="text" name='title' placeholder='Título da tarefa' value={title || ''} required onChange={(e) => setTitle(e.target.value)} />
           </div>
 
-          <input type="submit" value="Enviar" />
+          <div className="form_control">
+            <label htmlFor="time">Duração:</label>
+            <input type="text" name='time' placeholder='Tempo estimado (em horas)' value={time || ''} required onChange={(e) => setTitle(e.target.value)} />
+          </div>
+
+          <input type="submit" value="Criar Tarefa" />
         </form>
       </div>
 
