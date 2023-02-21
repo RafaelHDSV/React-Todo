@@ -24,6 +24,8 @@ function App() {
       setLoading(false)
       setTodos(res)
     }
+
+    loadData()
   }, [])
 
   const handleSubmit = async (e) => {
