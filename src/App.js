@@ -1,4 +1,4 @@
-import { useState, UseEffect } from 'react'
+import { useState, UseEffect, useEffect } from 'react'
 import { BsTrash, BsBookmarkCheck, BsBookmarkCheckFill } from 'react-icons/bs'
 
 import './App.css';
@@ -10,6 +10,18 @@ function App() {
   const [time, setTime] = useState('')
   const [todos, setTodos] = useState([])
   const [loading, setLoading] = useState(false)
+
+  // Load todo on the page
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true)
+
+      const res = await fetch(API + '/todos')
+        .then((resp) => resp.json())
+        .then((data) => data)
+        .catch((err) => console.log(err))
+    }
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
