@@ -52,6 +52,27 @@ function App() {
     setTime('')
   }
 
+  const handleDelete = async (id) => {
+    await fetch(API + '/todos/' + id, {
+      method: 'DELETE',
+    })
+
+    setTodos((prevState) => prevState.filter((todo) => todo.id !== id))
+  }
+
+  const handleEdit = async (todo) => {
+
+    todo.done = !todo.done
+
+    await fetch(API + '/todos/' + todo.id, {
+      method: 'PUT',
+      body: JSON.stringify(todo),
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+  }
+
   // FAZER TALVEZ
   if (loading) {
     return <p>Carregando...</p>
@@ -90,11 +111,11 @@ function App() {
             <p>Duração: {todo.time}</p>
 
             <div className="actions">
-              <span>
+              <span onClick={() => handleEdit(todo)}>
                 {!todo.done ? <BsBookmarkCheck /> : <BsBookmarkCheckFill />}
               </span>
 
-              <BsTrash />
+              <BsTrash onClick={() => handleDelete(todo.id)} />
             </div>
           </div>
         ))}
