@@ -75,9 +75,8 @@ function App() {
     setTodos((prevState) => prevState.map((t) => (t.id === data.id ? (t = data) : t)))
   }
 
-  // FAZER TALVEZ
   if (loading) {
-    return <p>Carregando...</p>
+    return <p>LOADING...</p>
   }
 
   return (
