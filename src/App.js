@@ -64,13 +64,15 @@ function App() {
 
     todo.done = !todo.done
 
-    await fetch(API + '/todos/' + todo.id, {
+    const data = await fetch(API + '/todos/' + todo.id, {
       method: 'PUT',
       body: JSON.stringify(todo),
       headers: {
         "Content-type": "application/json"
       }
     })
+
+    setTodos((prevState) => prevState.map((t) => (t.id === data.id ? (t = data) : t)))
   }
 
   // FAZER TALVEZ
